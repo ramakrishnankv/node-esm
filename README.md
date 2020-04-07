@@ -84,7 +84,7 @@ In the above snippet, key "main" in package.json refers the entry point for the 
 
 Now let us see how ES module works for a similar requirement;
 
-## Exaple - ESM
+## Example - ESM
 ```
 // package.json
 
