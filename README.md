@@ -2,7 +2,7 @@
 Can I use import to require a module in NodeJS?
 What need to know working between CommonJS and ES module in NodeJS?
 
-Yes, from version 13 NodeJS supports ESM (ES Module) and can use import to include modules. Experimentally it supports version 8 to 12 too. This example explains how to use ESM and discuss the challenges thereof.
+Yes, from version 13 NodeJS supports ESM (ES Module) and can use import to include modules. Experimentally it supports version 8 to 12 too. This example explains how to use ESM.
 
 Let us walk through some of the basic stuffs that will help to understand the usage.
 
