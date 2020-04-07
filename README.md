@@ -139,7 +139,7 @@ This repository is a tiny example of the ways to use ESM over CommonJS.
 
 Have a look at package.json that has an entry "type": "module" to enable ESM. The ./server.js is the entry point for this application.
 
-Clone the code and run ``` $ npm run start ``` to start the application. 
+Clone the code and run ``` $ npm run start ``` to start the application. Hit [http://localhost:3000/](http://localhost:3000/) and watch the terminal/command prompt console to see the messages that displays according to the module used. One might need to restart the application if any code changes are done.
 
 There are 3 sections in server.js;
 1. CommonJS module: This set of code demonstrates how CommonJS modules are required. The file required using this is "./modules/req.js". See the module.exports entry. Initially this section is commented out, once enabled it can be tested how the require works. Ensure to remove "type": "module" from package.json before starting the app.
