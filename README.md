@@ -1,4 +1,4 @@
-## ES Modules in NodeJS
+# ES Modules in NodeJS
 Can I use import to require a module in NodeJS?
 What need to know working between CommonJS and ES module in NodeJS?
 
@@ -6,7 +6,7 @@ Yes, from version 13 NodeJS supports ESM (ES Module) and can use import to inclu
 
 Let us walk through some of the basic stuffs that will help to understand the usage.
 
-# CommonJS
+## CommonJS
 NodeJS uses CommonJS pattern to require modules into another module. A module is nothing but an independent JavaScript functionality that has it's own context. 
 
 Sample code:
@@ -20,10 +20,10 @@ http.createServer((req, res) => {
 
 ES6 brings in a lot of new features among which import statement is one of the key features. Import does the same job as require but with a slightly different syntax. The differences between require and import are explained [here](https://stackoverflow.com/questions/46677752/the-difference-between-requirex-and-import-x#answers-header) 
 
-# Global Scope
+## Global Scope
 In browser window is the global space, whereas, in NodeJS 'global' is the global space.
 
-# Module Export
+## Module Export
 exports or module.exports expose the module to the global space in CommonJS.
 
 ```
@@ -33,43 +33,46 @@ module.exports = Object
 
 Example:
 ```
-// myModule.js
-var myFun = function(a) { return a }
+// ./modules/req.js
+const myModule = {
+  calc: function(a, b) { 
+    return a + b
+  }
+}
 
-module.exports = myFun
+module.exports = myModule;
 
-// mainModule.js
-var myModule = require("./myModule.js");
+// ./server.js
+const myModule = require("./modules/req");
 
-myModule.myFun('Hello World')
-// returns 'Hello World'
+myModule.calc(1, 2)
+// returns 3
 ```
 
-# ES Module
+## ES Module
 To use ES Module add "type": "module" in package.json.
 
 [ES Module](https://nodejs.org/api/esm.html#esm_introduction)
 
 This feature is available only NodeJS Version 13 and above. For version between 8 to 12 the file extension should be .mjs and need to execute the command "node --experimental-modules my-app.mjs". When CommonJS adds a module to global scope via module.exports, ESM export default or name export of a module. 
 
-# Example - CommonJS
+## Example - CommonJS
 ```
 // package.json
 
 "main":  "server.js"
 
-// server.js
+// ./server.js
 
-var myModule = require("./myModule")
+const myModule = require("./modules/req");
 // Note that the file extension is not mandatory here
 
 myModule.calc(1, 2); // returns 3
 
-// myModule.js
-
+// ./modules/req.js
 const myModule = {
-  calc: function(a, b) {
-    return a + b;
+  calc: function(a, b) { 
+    return a + b
   }
 }
 
@@ -81,22 +84,22 @@ In the above snippet, key "main" in package.json refers the entry point for the 
 
 Now let us see how ES module works for a similar requirement;
 
-# Exaple - ESM
+## Exaple - ESM
 ```
 // package.json
 
 "main":  "server.js",
 "type": "module"
 
-// server.js
+// ./server.js
 
-import myModule from "./myModule.js";
+import myModule from './modules/imp.js';
 
 myModule.calc(1, 2); // returns 3
 
-// myModule.js
+// ./modules/imp.js
 
-const myModule = {
+const myModule = { 
   calc: (a, b) => a + b
 }
 
@@ -130,7 +133,7 @@ const myFn = require("./containers/com.cjs");
 
 The above three lines will do the job. Note the extension of the required file must be .cjs.
 
-## Working Example
+### Working Example
 
 This repository is a tiny example of the ways to use ESM over CommonJS. 
 
